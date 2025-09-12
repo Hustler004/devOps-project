@@ -1,13 +1,14 @@
-FROM centos:7
+# Use a lightweight, supported base image
+FROM nginx:alpine
+
+# Metadata
 LABEL maintainer="AGAM@gmail.com"
 
-RUN yum install -y httpd
-RUN yum install -y zip
-RUN yum install -y unzip
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
-WORKDIR /var/www/html/
-RUN sh -c 'unzip -q "*.zip"'
-RUN cp -rvf photogenic/* .
-RUN rm -rf photogenic photogenic.zip
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-EXPOSE 80 22
+# Copy a simple test page into nginx document root
+RUN echo "<h1>Hello from Jenkins Pipeline!</h1>" > /usr/share/nginx/html/index.html
+
+# Expose port 80 for web traffic
+EXPOSE 80
+
+# Default command (nginx in foreground)
+CMD ["nginx", "-g", "daemon off;"]
