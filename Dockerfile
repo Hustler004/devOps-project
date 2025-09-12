@@ -1,5 +1,5 @@
 FROM centos:7
-LABEL maintainer = "AGAM@gmail.com"
+LABEL maintainer="AGAM@gmail.com"
 
 RUN yum install -y httpd
 RUN yum install -y zip
