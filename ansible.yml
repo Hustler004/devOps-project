@@ -3,5 +3,9 @@
   tasks:
     - name: create new deployment
       command: minikube kubectl -- apply -f /home/ubuntu/deployment.yml
+      environment:
+      KUBECONFIG: /home/ubuntu/.kube/config
     - name: create new service
       command: minikube kubectl -- apply -f /home/ubuntu/service.yml
+      environment:
+      KUBECONFIG: /home/ubuntu/.kube/config
